@@ -1,0 +1,166 @@
+@mixin transition($transition...) {
+  $prefixes:      ("-webkit-", "-moz-", "-o-" );
+  @each $prefix in $prefixes {
+      #{$prefix}transition: $transition;
+  }
+}
+
+$classPrefix: drawer;
+$palette-bluegrey-quaternary : #C6D0E3 !default;
+$border-color-default: $palette-bluegrey-quaternary;
+$lg: 992px !default;
+$lg-max: $lg - 1px !default;
+
+.#{$classPrefix} {
+    position: relative;
+    background: white;
+    height: 100%;
+    min-height: 100vh;
+    z-index: 1021;
+}
+
+.open-#{$classPrefix}-btn {
+    display: none
+}
+
+@media screen and (min-width: $lg) {
+    body.has-#{$classPrefix}-backdrop {
+        overflow-y: initial!important; //overflow fix for if switch to xl if drawer open
+    }
+}
+
+@media screen and (max-width: $lg-max) {
+
+    .#{$classPrefix} {
+        position: absolute;
+        max-width: 400px;
+        top: 0;
+        z-index: 1041;
+        height: calc(100vh + 50px);
+        -webkit-box-shadow: 0 8px 10px -5px rgba(0,0,0,0.2), 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12);
+        box-shadow: 0 8px 10px -5px rgba(0,0,0,0.2), 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12);
+        @include transition(transform 0.5s cubic-bezier(0.25, 0.26, 0.15, 1));
+        overflow-x: visible;
+    }
+
+    .#{$classPrefix}-content {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    
+    .#{$classPrefix}-is-fixed {
+        position: fixed;
+        top: 0;
+    }
+
+    .#{$classPrefix}-backdrop {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        @include transition(opacity 450ms linear);
+        z-index: 1021;
+        background-color: rgba(33, 33, 33, 1);
+        opacity: 0;
+    }
+
+    .has-#{$classPrefix}-backdrop {
+        .#{$classPrefix}-backdrop {
+            opacity: 0.45;
+        }
+        .close-#{$classPrefix}-btn {
+            display: block;
+        }
+    }
+
+    .#{$classPrefix}-is-left-docked {
+        left: 0;
+        -webkit-transform: translateX(-415px);
+        transform: translateX(-415px);
+    }
+
+    .#{$classPrefix}-is-right-docked {
+        right: 0;
+        -webkit-transform: translateX(415px);
+        transform: translateX(415px);
+    }
+
+    .#{$classPrefix}-is-open {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    .open-#{$classPrefix}-btn {
+        display: block;
+        position: relative;
+        text-align: center;
+        font-size: 0.8rem;
+        background: #4658C1;
+        color: #ffffff;
+        padding: 5px 10px;
+        cursor: pointer;
+        z-index: 2;
+        left: 0;
+        margin: 5px;
+        &:hover {
+            color: #ffffff;
+            text-decoration: none;
+        }
+    }
+
+    .close-#{$classPrefix}-btn {
+        padding: 5px 0;
+        display: none;
+        position: absolute;
+        right: -55px;
+        top: 0px;
+        z-index: 1;
+        font-size: 1rem;
+        background-color: rgba(0, 0, 0, 0.42);
+        color: #ffffff;
+        border: solid 1px #ffffff;
+        width: 40px;
+        text-align: center;
+        border-radius: 5px;
+        &:hover,
+        &:focus {
+            color: #ffffff;
+            text-decoration: none;
+            transform: scale(0.9);
+        }
+    }
+
+}
+
+.#{$classPrefix}-heading {
+    font-size: 1rem;
+    padding: 16px 10px;
+    text-align: center;
+    margin-bottom: 0;
+    border-bottom: solid 1px #e4e4e4;
+}
+
+.#{$classPrefix}-content {
+    position: relative;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+}
+
+.#{$classPrefix}-filter {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    left: -250px;
+    border: solid 1px #C6D0E3;
+    border-top: none;
+    padding-bottom: 1rem;
+    @media screen and (max-width: $lg-max) {
+        position: relative;
+        left: 0!important;
+        border: none;
+        width: 100%;
+        border-top: solid 1px #C6D0E3;
+    }
+}
