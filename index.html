@@ -12,9 +12,16 @@
     </head>
     <body>
 
+        <div id="content">
+
+    <button id="js-open-drawer">open</button>
+    <button class="js-toggle-drawer">close</button>
+
         <div class="drawer">
             foo
         </div>
+
+    </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
@@ -23,6 +30,10 @@
         <script>
             $(document).ready(function() {
                 var innovedDrawer = $.innovedDrawer();
+
+                innovedDrawer.drawerIsOpen = true;
+
+                innovedDrawer.init();
             });
         </script>
 

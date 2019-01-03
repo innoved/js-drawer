@@ -4,20 +4,12 @@
 
   'use strict';
 
+  const drawerFilterIsOpen = false;
+
   const InnovedDrawer = function() {
 
-    // Public - can be called from client code
-    this.toggleDrawer = function() {
-        if($('.drawer').hasClass('drawer-is-open')) {
-            $('.drawer').removeClass('drawer-is-open');
-        } else {
-            $('.drawer').addClass('drawer-is-open');
-        }
-        drawerBackdrop();
-    }
-
-    // Private - render backdrop and lock page scrolling
-    var drawerBackdrop = function() {
+    //private - render backdrop and lock page scrolling
+    const drawerBackdrop = function() {
       if($('.drawer').css('position') == 'absolute') {
           if($('.drawer').hasClass('drawer-is-open')) {
               $('<div class="drawer-backdrop"></div>').appendTo('#content');
@@ -35,19 +27,19 @@
       }
     };
 
-    // Private - set the position of the drawer to fixed if we have scrolled past the top
-    var drawerPosFix = function() {
-        var elementPosition = $('.drawer').offset().top;
+    //private - set the position of the drawer to fixed if we have scrolled past the top
+    const drawerPosFix = function() {
+        const elementPosition = $('.drawer').offset().top;
 
-        var scrollTimeout;
-        var throttle = 250; //we can set the throttle pretty high because we wont be scrolling when the drawer is open
+        let scrollTimeout;
+        const throttle = 250; //we can set the throttle pretty high because we wont be scrolling when the drawer is open
 
         $(window).on('scroll', function () {
             if (!scrollTimeout) {
                 scrollTimeout = setTimeout(function () {
 
-                    var yScrollPos = window.pageYOffset;
-                    var scrollPosTest = elementPosition;
+                    const yScrollPos = window.pageYOffset;
+                    const scrollPosTest = elementPosition;
 
                     if(yScrollPos > scrollPosTest) {
                         $('.drawer').addClass('drawer-is-fixed');
@@ -61,7 +53,8 @@
         });
     };
 
-    var toggleDrawerFilter = function(target, btn) {
+    //private
+    const toggleDrawerFilter = function(target, btn) {
         if(drawerFilterIsOpen) {
             TweenMax.to($(target), 0.35, { left: '-250px', onComplete:function()
                 {
@@ -78,16 +71,30 @@
         }
     };
 
-    // Private - can only be called from within this object
-    var init = function() {
+    const toggleDrawer = function() {
+        if($('.drawer').hasClass('drawer-is-open')) {
+            $('.drawer').removeClass('drawer-is-open');
+        } else {
+            $('.drawer').addClass('drawer-is-open');
+        }
+        drawerBackdrop();
+    }
+
+    //public
+    this.toggleDrawer = function() {
+        toggleDrawer();
+    };
+
+    //public
+    this.init = function() {
         drawerBackdrop();
         drawerPosFix();
         $('body').on('click', '#js-open-drawer, .drawer-backdrop, .js-toggle-drawer', function() {
             toggleDrawer();
         });
         $('body').on('click', '.js-toggle-drawer-filter', function() {
-            var target = $(this).data('target');
-            var btn = $(this);
+            const target = $(this).data('target');
+            const btn = $(this);
             toggleDrawerFilter(target, btn);
         })
     };
