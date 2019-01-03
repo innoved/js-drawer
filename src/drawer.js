@@ -10,7 +10,7 @@
 
     //private - render backdrop and lock page scrolling
     const drawerBackdrop = function() {
-      if($('.drawer').css('position') == 'absolute') {
+      //if($('.drawer').css('position') == 'absolute') {
           if($('.drawer').hasClass('drawer-is-open')) {
               $('<div class="drawer-backdrop"></div>').appendTo('#content');
               setTimeout(function() {
@@ -24,14 +24,14 @@
               }, 450);
               $('body').css('overflow-y', 'initial');
           }
-      }
+      //}
     };
 
     //private - set the position of the drawer to fixed if we have scrolled past the top
     const drawerPosFix = function() {
         const elementPosition = $('.drawer').offset().top;
 
-        let scrollTimeout;
+        var scrollTimeout;
         const throttle = 250; //we can set the throttle pretty high because we wont be scrolling when the drawer is open
 
         $(window).on('scroll', function () {
@@ -71,6 +71,7 @@
         }
     };
 
+    //private
     const toggleDrawer = function() {
         if($('.drawer').hasClass('drawer-is-open')) {
             $('.drawer').removeClass('drawer-is-open');

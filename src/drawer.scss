@@ -89,6 +89,9 @@ $lg-max: $lg - 1px !default;
     .#{$classPrefix}-is-open {
         -webkit-transform: translateX(0);
         transform: translateX(0);
+        .#{$classPrefix}-backdrop {
+            opacity: 1;
+        }
     }
 
     .open-#{$classPrefix}-btn {
