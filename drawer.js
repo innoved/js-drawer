@@ -16,21 +16,21 @@ function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only")
   var InnovedDrawer = function InnovedDrawer() {
     //private - render backdrop and lock page scrolling
     var drawerBackdrop = function drawerBackdrop() {
-      //if($('.drawer').css('position') == 'absolute') {
-      if ($('.drawer').hasClass('drawer-is-open')) {
-        $('<div class="drawer-backdrop"></div>').appendTo('#content');
-        setTimeout(function () {
-          $('body').addClass('has-drawer-backdrop');
-        }, 50);
-        $('body').css('overflow-y', 'hidden');
-      } else {
-        $('body').removeClass('has-drawer-backdrop');
-        setTimeout(function () {
-          $(".drawer-backdrop").remove();
-        }, 450);
-        $('body').css('overflow-y', 'initial');
-      } //}
-
+      if ($('.drawer').css('position') == 'absolute') {
+        if ($('.drawer').hasClass('drawer-is-open')) {
+          $('<div class="drawer-backdrop"></div>').appendTo('#content');
+          setTimeout(function () {
+            $('body').addClass('has-drawer-backdrop');
+          }, 50);
+          $('body').css('overflow-y', 'hidden');
+        } else {
+          $('body').removeClass('has-drawer-backdrop');
+          setTimeout(function () {
+            $(".drawer-backdrop").remove();
+          }, 450);
+          $('body').css('overflow-y', 'auto');
+        }
+      }
     }; //private - set the position of the drawer to fixed if we have scrolled past the top
 
 

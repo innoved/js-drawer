@@ -10,7 +10,7 @@
 
     //private - render backdrop and lock page scrolling
     const drawerBackdrop = function() {
-      //if($('.drawer').css('position') == 'absolute') {
+      if($('.drawer').css('position') == 'absolute') {
           if($('.drawer').hasClass('drawer-is-open')) {
               $('<div class="drawer-backdrop"></div>').appendTo('#content');
               setTimeout(function() {
@@ -22,9 +22,9 @@
               setTimeout(function() {
                   $(".drawer-backdrop").remove();
               }, 450);
-              $('body').css('overflow-y', 'initial');
+              $('body').css('overflow-y', 'auto');
           }
-      //}
+      }
     };
 
     //private - set the position of the drawer to fixed if we have scrolled past the top

@@ -25,9 +25,13 @@ $lg-max: $lg - 1px !default;
     display: none
 }
 
+body.has-#{$classPrefix}-backdrop {
+    overflow-y: hidden;
+}
+
 @media screen and (min-width: $lg) {
     body.has-#{$classPrefix}-backdrop {
-        overflow-y: initial!important; //overflow fix for if switch to xl if drawer open
+        overflow-y: auto!important; //overflow fix for if switch to xl if drawer open
     }
 }
 
