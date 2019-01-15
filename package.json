@@ -4,7 +4,7 @@
   "description": "",
   "main": "drawer.js",
   "scripts": {
-    "lint": "echo '=> linting' && jshint src/main.js",
+    "lint": "echo '=> linting' && jshint src/drawer.js",
     "build": "npx babel src/drawer.js --out-file drawer.js && webpack",
     "watch": "webpack --watch"
   },
