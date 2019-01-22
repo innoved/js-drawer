@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
-
 //import './drawer.scss';
 (function ($) {
   'use strict';
@@ -67,7 +65,7 @@ function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only")
           }
         });
         btn.html('Open Filter');
-        drawerFilterIsOpen = (_readOnlyError("drawerFilterIsOpen"), false);
+        drawerFilterIsOpen = false;
       } else {
         $(target).show();
         TweenMax.to($(target), 0.3, {
@@ -75,7 +73,7 @@ function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only")
           ease: Power3.easeOut
         });
         btn.html('Close Filter');
-        drawerFilterIsOpen = (_readOnlyError("drawerFilterIsOpen"), true);
+        drawerFilterIsOpen = true;
       }
     }; //private
 

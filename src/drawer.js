@@ -4,7 +4,7 @@
 
   'use strict';
 
-  const drawerFilterIsOpen = false;
+  let drawerFilterIsOpen = false;
 
   const InnovedDrawer = function() {
 
