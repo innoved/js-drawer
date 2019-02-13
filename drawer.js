@@ -95,16 +95,18 @@ exports.default = void 0;
 
 
     this.init = function () {
-      drawerBackdrop();
-      drawerPosFix();
-      $('body').on('click', '#js-open-drawer, .drawer-backdrop, .js-toggle-drawer', function () {
-        toggleDrawer();
-      });
-      $('body').on('click', '.js-toggle-drawer-filter', function () {
-        var target = $(this).data('target');
-        var btn = $(this);
-        toggleDrawerFilter(target, btn);
-      });
+      if ($('.drawer').length) {
+        drawerBackdrop();
+        drawerPosFix();
+        $('body').on('click', '#js-open-drawer, .drawer-backdrop, .js-toggle-drawer', function () {
+          toggleDrawer();
+        });
+        $('body').on('click', '.js-toggle-drawer-filter', function () {
+          var target = $(this).data('target');
+          var btn = $(this);
+          toggleDrawerFilter(target, btn);
+        });
+      }
     };
   }; //return the object for global use
 

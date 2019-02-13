@@ -5,7 +5,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const packageName = 'drawer';
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: ["@babel/polyfill", './src/'+packageName+'.js'],
   output: {
     path: path.resolve(__dirname + "/dist"),
