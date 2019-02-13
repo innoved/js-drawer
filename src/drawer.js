@@ -88,16 +88,18 @@
 
     //public
     this.init = function() {
-        drawerBackdrop();
-        drawerPosFix();
-        $('body').on('click', '#js-open-drawer, .drawer-backdrop, .js-toggle-drawer', function() {
-            toggleDrawer();
-        });
-        $('body').on('click', '.js-toggle-drawer-filter', function() {
-            const target = $(this).data('target');
-            const btn = $(this);
-            toggleDrawerFilter(target, btn);
-        })
+        if($('.drawer').length) {
+            drawerBackdrop();
+            drawerPosFix();
+            $('body').on('click', '#js-open-drawer, .drawer-backdrop, .js-toggle-drawer', function() {
+                toggleDrawer();
+            });
+            $('body').on('click', '.js-toggle-drawer-filter', function() {
+                const target = $(this).data('target');
+                const btn = $(this);
+                toggleDrawerFilter(target, btn);
+            });
+        }
     };
 
   };
